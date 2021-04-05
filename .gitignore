@@ -21,3 +21,5 @@ yarn-error.log*
 
 # Gradle
 /.gradle
+gradlew
+gradlew.bat
