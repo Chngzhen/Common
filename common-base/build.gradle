@@ -1,0 +1,14 @@
+
+version "1.0.0"
+
+dependencies {
+    // 属性拷贝
+    compile 'cglib:cglib-nodep:3.3.0'
+    // JSON处理
+    compile 'com.alibaba:fastjson:1.2.74'
+    // 汉字转拼音
+    compile 'com.belerweb:pinyin4j:2.5.0'
+    // 属性校验
+    compile 'javax.validation:validation-api:2.0.1.Final'
+
+}

@@ -1,51 +1,47 @@
-plugins {
-    id 'java'
-    id 'maven-publish'
+
+version '1.0.0'
+
+allprojects {
+
+    group 'pfu.common'
+
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+
 }
 
-group = 'pfu.common'
-version = '1.0.0'
+subprojects {
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: 'application'
 
-repositories {
-    mavenLocal()
-    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-    mavenCentral()
-}
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 
-dependencies {
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
 
-    // 属性拷贝
-    compile 'cglib:cglib-nodep:3.3.0'
-    // JSON处理
-    compile 'com.alibaba:fastjson:1.2.74'
-    // 汉字转拼音
-    compile 'com.belerweb:pinyin4j:2.5.0'
-    // 属性校验
-    compile 'javax.validation:validation-api:2.0.1.Final'
+    test {
+        useJUnitPlatform()
+    }
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-}
+    jar {
+        // 配置文件不打入JAR包
+        excludes = ["application.yml", "bootstrap.yml"]
+    }
 
-test {
-    useJUnitPlatform()
-}
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
-            artifact sourceJar {
-                classifier "sources"
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
             }
         }
     }
+
 }

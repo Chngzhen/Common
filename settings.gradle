@@ -1,2 +1,5 @@
 rootProject.name = 'common'
 
+include 'common-base'
+include 'common-aspect'
+

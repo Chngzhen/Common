@@ -1,0 +1,9 @@
+
+version '1.0.0'
+
+dependencies {
+    compile "pfu.common:common-base:1.0.0"
+    compile "org.aspectj:aspectjweaver:1.9.6"
+    compile "org.slf4j:slf4j-api:1.7.30"
+    compile "org.hibernate.validator:hibernate-validator:6.2.0.Final"
+}
