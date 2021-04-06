@@ -1,12 +1,13 @@
 package pfu.common.base.util;
 
+import pfu.common.base.exception.LocalException;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.zip.CRC32;
 
 /**
@@ -15,24 +16,34 @@ import java.util.zip.CRC32;
  */
 public class FileUtil {
 
+    private FileUtil() {}
+
     private static char[] hexDigits = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-    public static String md5(File file) throws IOException, NoSuchAlgorithmException {
-        MessageDigest messagedigest = MessageDigest.getInstance("MD5");
-        FileInputStream in = new FileInputStream(file);
-        FileChannel ch = in.getChannel();
-        MappedByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
-        messagedigest.update(byteBuffer);
-        return bufferToHex(messagedigest.digest());
+    public static String md5(File file) {
+        try (FileInputStream in = new FileInputStream(file)) {
+            MessageDigest messagedigest = MessageDigest.getInstance("MD5");
+
+            FileChannel ch = in.getChannel();
+            MappedByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
+            messagedigest.update(byteBuffer);
+            return bufferToHex(messagedigest.digest());
+        } catch (Exception e) {
+            throw new LocalException("文件MD5值计算失败");
+        }
     }
 
-    public static String sha1(File file) throws OutOfMemoryError, IOException, NoSuchAlgorithmException {
-        MessageDigest messagedigest = MessageDigest.getInstance("SHA-1");
-        FileInputStream in = new FileInputStream(file);
-        FileChannel ch = in.getChannel();
-        MappedByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
-        messagedigest.update(byteBuffer);
-        return bufferToHex(messagedigest.digest());
+    public static String sha1(File file) {
+        try (FileInputStream in = new FileInputStream(file)) {
+            MessageDigest messagedigest = MessageDigest.getInstance("SHA-1");
+
+            FileChannel ch = in.getChannel();
+            MappedByteBuffer byteBuffer = ch.map(FileChannel.MapMode.READ_ONLY, 0, file.length());
+            messagedigest.update(byteBuffer);
+            return bufferToHex(messagedigest.digest());
+        } catch (Exception e) {
+            throw new LocalException("文件MD5值计算失败");
+        }
     }
 
     public static String crc32(File file) {
@@ -55,19 +66,19 @@ public class FileUtil {
     }
 
     private static String bufferToHex(byte[] bytes, int m, int n) {
-        StringBuffer stringbuffer = new StringBuffer(2 * n);
+        StringBuilder stringBuilder = new StringBuilder(2 * n);
         int k = m + n;
         for (int l = m; l < k; l++) {
-            appendHexPair(bytes[l], stringbuffer);
+            appendHexPair(bytes[l], stringBuilder);
         }
-        return stringbuffer.toString();
+        return stringBuilder.toString();
     }
 
-    private static void appendHexPair(byte bt, StringBuffer stringbuffer) {
+    private static void appendHexPair(byte bt, StringBuilder stringBuilder) {
         char c0 = hexDigits[(bt & 0xf0) >> 4];
         char c1 = hexDigits[bt & 0xf];
-        stringbuffer.append(c0);
-        stringbuffer.append(c1);
+        stringBuilder.append(c0);
+        stringBuilder.append(c1);
     }
 
 }

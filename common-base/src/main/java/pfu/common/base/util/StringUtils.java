@@ -5,6 +5,8 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
+import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import pfu.common.base.exception.LocalException;
 
 import java.util.List;
 
@@ -16,14 +18,9 @@ import java.util.List;
  */
 public class StringUtils {
 
-	public static void main(String[] args) throws Exception {
-		System.out.println(toShortPinyin("出水阀"));
-		System.out.println(toShortPinyin("出水阀279"));
-		System.out.println(toShortPinyin("出水阀,279"));
-		System.out.println(toShortPinyin("出水阀！279"));
-	}
+	private StringUtils() {}
 
-	public static String toShortPinyin(String str) throws Exception {
+	public static String toShortPinyin(String str) throws BadHanyuPinyinOutputFormatCombination {
 		if (null == str) return null;
 		str = str.trim();
 		if (0 >= str.length()) return null;
@@ -48,7 +45,7 @@ public class StringUtils {
 	}
 
 	public static String list2String(List<Integer> list) {
-		if (0 < list.size()) {
+		if (!list.isEmpty()) {
 			StringBuilder builder = new StringBuilder(256);
 			for (Integer item : list) builder.append(",").append(item);
 			return builder.length() > 0 ? builder.substring(1) : "";
@@ -91,7 +88,7 @@ public class StringUtils {
 	 */
 	public static String lowerCamelCase(String str) {
 		String[] words = str.split("[^A-Za-z$]");
-		if (0 == words.length) throw new RuntimeException("字符串必须包含字母");
+		if (0 == words.length) throw new LocalException("字符串必须包含字母");
 
 		StringBuilder newStr = new StringBuilder(words[0].toLowerCase());
 		for (int i = 1; i< words.length; i++) {
@@ -111,7 +108,7 @@ public class StringUtils {
 	 * @see #lowerCamelCase(String)
 	 */
 	public static String underScoreCase(String str) {
-		if (0 == str.length()) throw new RuntimeException("字符串不能为空");
+		if (0 == str.length()) throw new LocalException("字符串不能为空");
 
 		StringBuilder newStr = new StringBuilder();
 		for (int i=0; i<str.length(); i++) {

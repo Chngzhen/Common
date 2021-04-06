@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class Utils {
 
+    private Utils() {}
+
     /**
      * 将源对象数组的属性值拷贝到目标类型的对象数组中。
      *
@@ -23,7 +25,7 @@ public class Utils {
      * @return {@link T} 类型的对象数组
      */
     public static <T> List<T> convert(List<?> sources, Class<T> targetClass) {
-        if (null != sources && 0 < sources.size()) {
+        if (null != sources && !sources.isEmpty()) {
             Class<?> sourceClass = null;
             BeanCopier copier = null;
 
@@ -49,7 +51,7 @@ public class Utils {
      */
     public static <T> T copyProperties(BeanCopier copier, Object source, Class<T> targetClass) throws LocalException {
         try {
-            T entity = targetClass.newInstance();
+            T entity = targetClass.getDeclaredConstructor().newInstance();
             copier.copy(source, entity, null);
             return entity;
         }catch (Exception e) {
