@@ -13,17 +13,12 @@ public class DataTable<T> extends ResponseJson<List<T>> {
 	/**
 	 * 过滤后的记录总数。默认：0。
 	 */
-	private int total;
-
-	/**
-	 * 每页的大小。
-	 */
-	private int size;
+	private long total;
 
 	/**
 	 * 分页数量。
 	 */
-	private int pages;
+	private long pages;
 
 	/**
 	 * 初始化成功响应内容。
@@ -31,12 +26,11 @@ public class DataTable<T> extends ResponseJson<List<T>> {
 	 * @param total 条件过滤后的数据总数
 	 * @param data 查询数据
 	 */
-	public static <T> DataTable<T> success(int total, int size, List<T> data) {
+	public static <T> DataTable<T> success(long total, int pages, List<T> data) {
 		DataTable<T> dataTable = new DataTable<>();
 		dataTable.data = data;
 		dataTable.total = total;
-		dataTable.size = size;
-		dataTable.pages = total / size + (total % size == 0 ? 0 : 1);
+		dataTable.pages = pages;
 		return dataTable;
 	}
 
@@ -44,11 +38,7 @@ public class DataTable<T> extends ResponseJson<List<T>> {
 		return total;
 	}
 
-	public int getSize() {
-		return size;
-	}
-
-	public int getPages() {
+	public long getPages() {
 		return pages;
 	}
 }
