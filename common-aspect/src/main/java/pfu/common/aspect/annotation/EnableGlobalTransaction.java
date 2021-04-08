@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Import(TxDefinitionRegistrar.class)
-public @interface EnableGlobalTx {
+public @interface EnableGlobalTransaction {
 
     /**
      * 切点。默认：任意 service 包下所有类的所有方法。

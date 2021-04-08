@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.util.StringUtils;
 import pfu.common.aspect.TransactionConfig;
-import pfu.common.aspect.annotation.EnableGlobalTx;
+import pfu.common.aspect.annotation.EnableGlobalTransaction;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class TxDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
-        Map<String, Object> attributes = metadata.getAnnotationAttributes(EnableGlobalTx.class.getName());
+        Map<String, Object> attributes = metadata.getAnnotationAttributes(EnableGlobalTransaction.class.getName());
         assert attributes != null;
         String pointcut = getPointcut(attributes);
         int txMethodTimeOut = getTxMethodTimeOut(attributes);
