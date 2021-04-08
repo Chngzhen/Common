@@ -2,12 +2,12 @@
 version = "$pfuCommonAspectVersion"
 
 dependencies {
-    compile "pfu.common:common-base:1.0.0"
+    compile "pfu.common:common-base:$pfuCommonBaseVersion"
 
     compile "org.springframework.boot:spring-boot-starter-aop"
     compile "org.springframework.boot:spring-boot-starter-jdbc"
 
-    compile "org.slf4j:slf4j-api:1.7.30"
-    compile "org.aspectj:aspectjweaver:1.9.6"
-    compile "org.hibernate.validator:hibernate-validator:6.2.0.Final"
+    compile "org.slf4j:slf4j-api:$slf4jApiVersion"
+    compile "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
+    compile "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
 }
