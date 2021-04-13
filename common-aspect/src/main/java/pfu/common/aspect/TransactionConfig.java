@@ -41,10 +41,9 @@ public class TransactionConfig implements InitializingBean {
         /* 配置事务管理规则,声明具备管理事务方法名.这里使用public void addTransactionalMethod(String methodName, TransactionAttribute attr)*/
         NameMatchTransactionAttributeSource source = new NameMatchTransactionAttributeSource();
         Map<String, TransactionAttribute> nameMap = new HashMap<>();
-        /*只读事物、不做更新删除等*/
-        /*事务管理规则*/
+
+        // 只读事务
         RuleBasedTransactionAttribute readOnlyRule = new RuleBasedTransactionAttribute();
-        /*设置当前事务是否为只读事务，true为只读*/
         readOnlyRule.setReadOnly(true);
         /* transactiondefinition 定义事务的隔离级别；
          *  PROPAGATION_REQUIRED 如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中*/
