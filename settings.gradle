@@ -2,4 +2,6 @@ rootProject.name = 'common'
 
 include 'common-base'
 include 'common-aspect'
+include 'common-swagger'
+include 'common-redis'
 
