@@ -1,8 +1,8 @@
 package pfu.common.swagger;
 
+import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -13,12 +13,12 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.service.Parameter;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@EnableSwagger2
+@EnableSwagger2WebMvc
 public class SwaggerConfiguration {
 
     private String title;
@@ -28,6 +28,13 @@ public class SwaggerConfiguration {
     private String version;
     private String description;
     private String basePackage;
+
+    private final OpenApiExtensionResolver openApiExtensionResolver;
+
+    public SwaggerConfiguration(OpenApiExtensionResolver openApiExtensionResolver) {
+        this.openApiExtensionResolver = openApiExtensionResolver;
+    }
+
 
     @Bean
     public Docket createRestApi() {
@@ -55,7 +62,8 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage(this.basePackage))
                 .paths(PathSelectors.any())
                 .build()
-                .globalOperationParameters(parameters);
+                .globalOperationParameters(parameters)
+                .extensions(openApiExtensionResolver.buildExtensions(this.version));
     }
 
     public String getTitle() {
