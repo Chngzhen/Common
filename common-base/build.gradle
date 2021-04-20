@@ -3,7 +3,7 @@ version = "$pfuCommonBaseVersion"
 
 dependencies {
     compile "com.alibaba:fastjson:$fastJsonVersion"
-    compile "com.belerweb:pinyin4j"
-    compile "javax.validation:validation-api"
-    compile "cglib:cglib-nodep"
+    compile "com.belerweb:pinyin4j:$pinyin4jVersion"
+    compile "javax.validation:validation-api:$javaxValidationVersion"
+    compile "cglib:cglib-nodep:$cglibNodepVersion"
 }
