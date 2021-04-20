@@ -2,12 +2,8 @@
 version = "$pfuCommonBaseVersion"
 
 dependencies {
-    // JSON处理
     compile "com.alibaba:fastjson:$fastJsonVersion"
-    // 汉字转拼音
-    compile "com.belerweb:pinyin4j:$pinyin4jVersion"
-    // 属性校验
-    compile "javax.validation:validation-api:$javaxValidationVersion"
-    // 属性拷贝
-    compile "cglib:cglib-nodep:$cglibNodepVersion"
+    compile "com.belerweb:pinyin4j"
+    compile "javax.validation:validation-api"
+    compile "cglib:cglib-nodep"
 }

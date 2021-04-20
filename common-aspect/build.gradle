@@ -7,7 +7,7 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-aop"
     compile "org.springframework.boot:spring-boot-starter-jdbc"
 
-    compile "org.slf4j:slf4j-api:$slf4jApiVersion"
-    compile "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
-    compile "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
+    compile "org.slf4j:slf4j-api"
+    compile "org.aspectj:aspectjweaver"
+    compile "org.hibernate.validator:hibernate-validator"
 }

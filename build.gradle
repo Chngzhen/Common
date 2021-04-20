@@ -34,7 +34,14 @@ subprojects {
         }
 
         dependencies {
-
+            dependency "cglib:cglib-nodep:$cglibNodepVersion"
+            dependency "com.alibaba:fastjson:$fastJsonVersion"
+            dependency "com.belerweb:pinyin4j:$pinyin4jVersion"
+            dependency "com.github.xiaoymin:knife4j-spring-boot-starter:$knife4jStarterVersion"
+            dependency "javax.validation:validation-api:$javaxValidationVersion"
+            dependency "org.slf4j:slf4j-api:$slf4jApiVersion"
+            dependency "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
+            dependency "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
         }
     }
 
