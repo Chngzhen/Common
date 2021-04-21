@@ -1,0 +1,6 @@
+
+version = "$pfuCommonQuartzVersion"
+
+dependencies {
+    compile "org.quartz-scheduler:quartz:$quartzVersion"
+}
