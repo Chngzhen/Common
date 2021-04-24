@@ -1,0 +1,8 @@
+
+version = "$pfuCommonRedisVersion"
+
+dependencies {
+    compile project(":common-base")
+
+    compile "org.redisson:redisson-spring-boot-starter:3.15.1"
+}
