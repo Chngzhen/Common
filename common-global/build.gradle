@@ -1,0 +1,10 @@
+
+version '1.0.0'
+
+dependencies {
+    compile project(":common-base")
+
+    compile "org.springframework.boot:spring-boot-starter:2.4.0"
+    compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
+}

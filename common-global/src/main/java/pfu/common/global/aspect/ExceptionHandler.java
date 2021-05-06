@@ -1,4 +1,4 @@
-package pfu.common.aspect;
+package pfu.common.global.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pfu.common.base.entity.ResponseJson;
 import pfu.common.base.exception.LocalException;
+import pfu.common.global.callback.Callback;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -27,8 +28,10 @@ public class ExceptionHandler {
     private final Logger log = LoggerFactory.getLogger(ExceptionHandler.class);
 
     private final Validator validator;
+    private final Callback callback;
 
-    public ExceptionHandler() {
+    public ExceptionHandler(Callback callback) {
+        this.callback = callback;
         this.validator = Validation
                 .byProvider(HibernateValidator.class)
                 .configure()
@@ -61,13 +64,16 @@ public class ExceptionHandler {
         } catch (LocalException e) {
             // LocalException 异常会自定义异常信息。
             log.error(e.getMessage(), e);
+            callback.run();
             return ResponseJson.failureWithMsg(e.getMessage());
         } catch (Throwable t) {
             // 其他异常统一返回“内部异常”。
             log.error("内部异常", t);
+            callback.run();
             return ResponseJson.failureWithMsg("内部异常");
         }
 
+        callback.run();
         return obj;
     }
 

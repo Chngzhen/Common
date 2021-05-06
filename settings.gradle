@@ -6,4 +6,5 @@ include 'common-swagger'
 include 'common-redis'
 include 'common-quartz'
 include 'common-jwt'
+include 'common-global'
 
