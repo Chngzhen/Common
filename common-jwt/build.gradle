@@ -6,6 +6,6 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-starter:2.4.0"
     compile "org.apache.tomcat.embed:tomcat-embed-core:9.0.38"
-    compile "com.nimbusds:nimbus-jose-jwt:$nimbusJwtVersion"
+    compile "com.auth0:java-jwt:$javaJwtVersion"
 
 }
