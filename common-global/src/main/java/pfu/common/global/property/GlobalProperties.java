@@ -21,7 +21,7 @@ public class GlobalProperties {
     /**
      * 校验实现。若为null，则不校验参数。
      */
-    private Class<? extends ValidationProvider<? extends Configuration<?>>> validator = null;
+    private Class<?> validator = null;
 
     public CallbackImpl getCallback() {
         return callback;
@@ -39,11 +39,11 @@ public class GlobalProperties {
         this.pointcut = pointcut;
     }
 
-    public Class<? extends ValidationProvider<? extends Configuration<?>>> getValidator() {
-        return validator;
+    public <V> Class<V> getValidator() {
+        return (Class<V>) validator;
     }
 
-    public void setValidator(Class<? extends ValidationProvider<? extends Configuration<?>>> validator) {
+    public <T extends Configuration<T>, U extends ValidationProvider<T>> void setValidator(Class<U> validator) {
         this.validator = validator;
     }
 }

@@ -28,11 +28,15 @@ public class GlobalExceptionInterceptor implements MethodInterceptor {
 
     public GlobalExceptionInterceptor(GlobalProperties properties) {
         if (null != properties.getValidator()) {
-            this.validator = Validation
-                    .byProvider(properties.getValidator())
-                    .configure()
-                    .buildValidatorFactory()
-                    .getValidator();
+            try {
+                this.validator = Validation
+                        .byProvider(properties.getValidator())
+                        .configure()
+                        .buildValidatorFactory()
+                        .getValidator();
+            } catch (Exception e) {
+                log.error("找不到校验实现[{}]", properties.getValidator());
+            }
         }
     }
 
