@@ -1,0 +1,16 @@
+
+version = "$pfuCommonGtxVersion"
+
+dependencies {
+    compile "pfu.common:common-base:$pfuCommonBaseVersion"
+
+    compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "org.springframework.boot:spring-boot-starter-jdbc"
+    compile "org.springframework.boot:spring-boot-starter:2.4.0"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    compile "org.slf4j:slf4j-api:$slf4jApiVersion"
+    compile "org.aspectj:aspectjweaver:$aspectjWeaverVersion"
+    compile "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
+}

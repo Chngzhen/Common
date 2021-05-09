@@ -1,10 +1,10 @@
 rootProject.name = 'common'
 
 include 'common-base'
-include 'common-aspect'
+include 'common-gtx'
 include 'common-swagger'
 include 'common-redis'
 include 'common-quartz'
 include 'common-jwt'
-include 'common-global'
+include 'common-gex'
 
