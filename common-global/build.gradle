@@ -7,4 +7,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter:2.4.0"
     compile "org.springframework.boot:spring-boot-starter-aop"
     compile "org.hibernate.validator:hibernate-validator:$hibernateValidatorVersion"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }

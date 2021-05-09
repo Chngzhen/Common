@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pfu.common.global.aspect.GlobalExceptionInterceptor;
-import pfu.common.global.property.GlobalProperties;
+import pfu.common.global.property.Global;
 
 /**
  * 全局异常处理自动配置类。
@@ -16,11 +16,11 @@ import pfu.common.global.property.GlobalProperties;
  * @since 2021-05-07
  */
 @Configuration
-@EnableConfigurationProperties(GlobalProperties.class)
+@EnableConfigurationProperties(Global.class)
 public class AutoConfiguration {
 
-    private final GlobalProperties properties;
-    public AutoConfiguration(GlobalProperties properties) {
+    private final Global properties;
+    public AutoConfiguration(Global properties) {
         this.properties = properties;
     }
 

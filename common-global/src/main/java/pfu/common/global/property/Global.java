@@ -1,17 +1,18 @@
 package pfu.common.global.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import pfu.common.global.callback.Callback;
 
-import javax.validation.Configuration;
-import javax.validation.spi.ValidationProvider;
+import java.util.ArrayList;
+import java.util.List;
 
 @ConfigurationProperties(prefix = "pfu.global")
-public class GlobalProperties {
+public class Global {
 
     /**
      * 回调。
      */
-    private CallbackImpl callback = new CallbackImpl();
+    private List<Callback> callbackImpl = new ArrayList<>();
 
     /**
      * 切面表达式。
@@ -23,12 +24,12 @@ public class GlobalProperties {
      */
     private Class<?> validator = null;
 
-    public CallbackImpl getCallback() {
-        return callback;
+    public List<Callback> getCallbackImpl() {
+        return callbackImpl;
     }
 
-    public void setCallback(CallbackImpl callback) {
-        this.callback = callback;
+    public void setCallbackImpl(List<Callback> callbackImpl) {
+        this.callbackImpl = callbackImpl;
     }
 
     public String getPointcut() {
@@ -39,11 +40,15 @@ public class GlobalProperties {
         this.pointcut = pointcut;
     }
 
-    public <V> Class<V> getValidator() {
+    public <V> Class<V> getValidatorProvider() {
         return (Class<V>) validator;
     }
 
-    public <T extends Configuration<T>, U extends ValidationProvider<T>> void setValidator(Class<U> validator) {
+    public Class<?> getValidator() {
+        return validator;
+    }
+
+    public void setValidator(Class<?> validator) {
         this.validator = validator;
     }
 }

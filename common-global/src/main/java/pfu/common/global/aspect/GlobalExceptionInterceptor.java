@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import pfu.common.base.entity.ResponseJson;
 import pfu.common.base.exception.LocalException;
-import pfu.common.global.property.GlobalProperties;
+import pfu.common.global.property.Global;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -26,11 +26,11 @@ public class GlobalExceptionInterceptor implements MethodInterceptor {
 
     private Validator validator;
 
-    public GlobalExceptionInterceptor(GlobalProperties properties) {
+    public GlobalExceptionInterceptor(Global properties) {
         if (null != properties.getValidator()) {
             try {
                 this.validator = Validation
-                        .byProvider(properties.getValidator())
+                        .byProvider(properties.getValidatorProvider())
                         .configure()
                         .buildValidatorFactory()
                         .getValidator();
