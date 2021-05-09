@@ -8,7 +8,7 @@ public class JwtProperties {
 
     private Header header = new Header();
 
-    private Claim claim = new Claim();
+    private ClaimSet claim = new ClaimSet();
 
     private Class<? extends JwtUser> jwtUserImpl = JwtUser.class;
 
@@ -20,12 +20,12 @@ public class JwtProperties {
         this.header = header;
     }
 
-    public Claim getClaim() {
+    public ClaimSet getClaim() {
         return claim;
     }
 
-    public void setClaim(Claim claim) {
-        this.claim = claim;
+    public void setClaim(ClaimSet claimSet) {
+        this.claim = claimSet;
     }
 
     public Class<? extends JwtUser> getJwtUserImpl() {
