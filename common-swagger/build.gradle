@@ -2,5 +2,6 @@
 version = "$pfuCommonSwaggerVersion"
 
 dependencies {
+    compile "org.springframework.boot:spring-boot-starter:2.4.0"
     compile "com.github.xiaoymin:knife4j-spring-boot-starter:$knife4jStarterVersion"
 }
